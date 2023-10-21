@@ -1,8 +1,5 @@
 pipeline {
   agent { dockerfile true }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
