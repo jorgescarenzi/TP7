@@ -40,8 +40,8 @@ pipeline {
   
   stage('Remove Unused docker image') {
       steps{
-        sh 'docker stop $(docker ps -a -q)
-        sh 'docker rm $(docker ps -a -q)
+        sh 'docker stop $(docker ps -a -q)'
+        sh 'docker rm $(docker ps -a -q)'
         sh 'docker rmi jorgescarenzi/ecom:$BUILD_NUMBER'
       }
     }
