@@ -8,7 +8,7 @@ pipeline {
     
     stage('gitclone') {
       steps {
-        git 'https://github.com/jorgescarenzi/TP7.git'
+        git 'https://github.com/jorgescarenzi/TP7'
       }
     }
     
