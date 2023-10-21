@@ -8,8 +8,7 @@ pipeline {
   
     stage('gitclone') {
       steps {
-        git branch : "main"
-        git 'https://github.com/jorgescarenzi/TP7'
+        git branch : "main", url:'https://github.com/jorgescarenzi/TP7'
       }
     }
     
