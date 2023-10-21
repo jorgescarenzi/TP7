@@ -15,7 +15,7 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh 'docker build -t $ECOM:$BUILD_NUMBER .'
+        sh 'docker build -t $ECOM + :$BUILD_NUMBER .'
       }
     }
     
@@ -35,7 +35,7 @@ pipeline {
     
     stage('Push') {
       steps {
-        sh 'docker push $ECOM:$BUILD_NUMBER'
+        sh 'docker push $ECOM + :$BUILD_NUMBER'
       }
     }
   }
