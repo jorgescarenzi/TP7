@@ -28,7 +28,6 @@ pipeline {
         else
         print "TEST PASSED"
         fi' 
-         }
         }
       }
     }
