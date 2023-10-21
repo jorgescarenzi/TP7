@@ -14,7 +14,7 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh 'docker build -t jorgescarenzi/ecom + ":$BUILD_NUMBER" .'
+        sh 'docker build -t jorgescarenzi/ecom:$BUILD_NUMBER .'
       }
     }
     
@@ -26,7 +26,7 @@ pipeline {
     
     stage('Push') {
       steps {
-        sh 'docker push jorgescarenzi/ecom + ":$BUILD_NUMBER"'
+        sh 'docker push jorgescarenzi/ecom:$BUILD_NUMBER'
       }
     }
   }
