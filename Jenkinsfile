@@ -21,13 +21,14 @@ pipeline {
     stage('test') {
       steps {
         sh 'docker run -d -p 1000:80 jorgescarenzi/ecom:$BUILD_NUMBER'
-        sh 'response=$(curl -s -o /dev/null -w "%{http_code}\n" http://localhost:1000/#product-list)
+        script { 'response=$(curl -s -o /dev/null -w "%{http_code}\n" http://localhost:1000/#product-list)
         if [ "$response" != "200" ] {
         then
         exit 1
         else
         print "TEST PASSED"
         fi' 
+         }
         }
       }
     }
