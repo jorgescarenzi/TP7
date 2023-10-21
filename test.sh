@@ -5,5 +5,5 @@ if [ "$response" != "200" ]
    then
    exit 1
       else
-        print "TEST PASSED"
+        echo "TEST PASSED"
         fi
