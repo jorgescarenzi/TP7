@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    $ECOM=jorgescarenzi/ecom
   }
   
   stages {
@@ -14,13 +15,18 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh 'docker build -t jorgescarenzi/ecom:$BUILD_NUMBER .'
+        sh 'docker build -t $ECOM:$BUILD_NUMBER .'
       }
     }
+    
     stage('test') {
       steps {
+        dif response = httpRequest "http://localhost:80"
+        println('Status: '+response.status)
+        println('Response: '+response.content)
       }
     }
+    
     stage('Login') {
       steps {
         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -29,10 +35,16 @@ pipeline {
     
     stage('Push') {
       steps {
-        sh 'docker push jorgescarenzi/ecom:$BUILD_NUMBER'
+        sh 'docker push $ECOM:$BUILD_NUMBER'
       }
     }
   }
+  
+  stage('Remove Unused docker image') {
+      steps{
+        sh 'docker rmi $ECOM:$BUILD_NUMBER'
+      }
+    }
   
   post {
     always {
