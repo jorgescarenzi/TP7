@@ -9,6 +9,7 @@ pipeline {
     stage('gitclone') {
       steps {
         git 'https://github.com/jorgescarenzi/TP7'
+        refs/heads/${branch}
       }
     }
     
