@@ -5,11 +5,11 @@ pipeline {
   }
   
   stages {
-    
+  
     stage('gitclone') {
       steps {
+        git branch : "main"
         git 'https://github.com/jorgescarenzi/TP7'
-        sh 'git "checkout main" 
       }
     }
     
