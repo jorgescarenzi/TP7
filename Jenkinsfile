@@ -37,14 +37,14 @@ pipeline {
         sh 'docker push jorgescarenzi/ecom:$BUILD_NUMBER'
       }
     }
-  }
   
   stage('Remove Unused docker image') {
       steps{
         sh 'docker rmi jorgescarenzi/ecom:$BUILD_NUMBER'
       }
     }
-  
+  }
+   
   post {
     always {
       sh 'docker logout'
