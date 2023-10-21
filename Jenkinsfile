@@ -42,7 +42,7 @@ pipeline {
   
   stage('Remove Unused docker image') {
       steps{
-        sh 'docker rmi $ECOM:$BUILD_NUMBER'
+        sh 'docker rmi $ECOM + :$BUILD_NUMBER'
       }
     }
   
