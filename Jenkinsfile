@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t jorgescarenzi/ecom .'
+        sh 'docker build -t jorgescarenzi/ecom + ":$BUILD_NUMBER" .'
       }
     }
     stage('Login') {
