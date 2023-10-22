@@ -20,7 +20,8 @@ pipeline {
     
     stage('test') {
       steps {
-        sh 'docker run -d -p 1000:80 jorgescarenzi/ecom:$BUILD_NUMBER'
+        sh 'bash $WORKSPACE/dockervalidate.sh'
+        sh 'docker run -d -p 1000:80 --name ecomtest'
         sh 'chmod +x -R $WORKSPACE/test.sh'
         sh 'bash $WORKSPACE/test.sh'
       }
