@@ -6,7 +6,7 @@ if [ "$response" != "200" ]
    echo "TEST FAILED ---------------------"
    docker stop $(docker ps -a -q)
    docker rm $(docker ps -a -q)
-   docker rmi jorgescarenzi/ecom:$BUILD_NUMBER'
+   docker rmi jorgescarenzi/ecom:$BUILD_NUMBER
    exit 1
       else
         echo "TEST PASSED------------------"
