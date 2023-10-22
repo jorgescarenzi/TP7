@@ -20,7 +20,8 @@ pipeline {
     
     stage('test') {
       steps {
-        sh 'bash $WORKSPACE/dockervalidate.sh'
+        sh 'chmod +x -R $WORKSPACE/checkport.sh'
+        sh 'bash $WORKSPACE/checkport.sh 80'
         sh 'docker run -d -p 1000:80 --name ecomtest'
         sh 'chmod +x -R $WORKSPACE/test.sh'
         sh 'bash $WORKSPACE/test.sh'
