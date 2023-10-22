@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh 'chmod +x -R $WORKSPACE/checkport.sh'
         sh 'bash $WORKSPACE/checkport.sh 80'
-        sh 'docker run -d -p 1000:80 --name ecomtest:$BUILD_NUMBER'
+        sh 'docker run -d -p 1000:80 --name ecomtest:$BUILD_NUMBER jorgescarenzi/ecom:$BUILD_NUMBER '
         sh 'chmod +x -R $WORKSPACE/test.sh'
         sh 'bash $WORKSPACE/test.sh'
       }
