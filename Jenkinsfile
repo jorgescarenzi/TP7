@@ -14,14 +14,17 @@ pipeline {
     
     stage('Build') {
       steps {
+        sh ' echo BUILDING IMAGE ------------------- '
         sh 'docker build -t jorgescarenzi/ecom:$BUILD_NUMBER .'
       }
     }
     
     stage('test') {
       steps {
+        sh 'echo VALIDATING PORT AND INSTANCE RUNNING ----- '
         sh 'chmod +x -R $WORKSPACE/checkport.sh'
         sh 'bash $WORKSPACE/checkport.sh 80'
+        sh ' echo RUNNING NEW INSTANCE FOR TESTING -------- '
         sh 'docker run -d -p 1000:80 --name ecomtest jorgescarenzi/ecom:$BUILD_NUMBER '
         sh 'chmod +x -R $WORKSPACE/test.sh'
         sh 'bash $WORKSPACE/test.sh'
@@ -36,12 +39,14 @@ pipeline {
     
     stage('Push') {
       steps {
+        sh 'echo PUSHING IMAGE TO DOCKERHUB --------- '
         sh 'docker push jorgescarenzi/ecom:$BUILD_NUMBER'
       }
     }
   
   stage('Remove Unused docker image') {
       steps{
+        sh 'echo CLEAN UP DOCKER  ----------- '
         sh 'docker stop $(docker ps -a -q)'
         sh 'docker rm $(docker ps -a -q)'
         sh 'docker rmi jorgescarenzi/ecom:$BUILD_NUMBER'
