@@ -28,6 +28,7 @@ pipeline {
         sh 'bash $WORKSPACE/checkrunning.sh '
         sh ' echo RUNNING NEW INSTANCE FOR TESTING -------- '
         sh 'docker run -d -p 1000:80 --name ecomtest jorgescarenzi/ecom:$BUILD_NUMBER '
+        sh 'sleep 30'
         sh 'chmod +x -R $WORKSPACE/test.sh'
         sh 'bash $WORKSPACE/test.sh'
       }
