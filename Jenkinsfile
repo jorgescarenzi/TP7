@@ -24,6 +24,8 @@ pipeline {
         sh 'echo VALIDATING PORT AND INSTANCE RUNNING ----- '
         sh 'chmod +x -R $WORKSPACE/checkport.sh'
         sh 'bash $WORKSPACE/checkport.sh 80'
+        sh 'chmod +x -R $WORKSPACE/checkrunning.sh'
+        sh 'bash $WORKSPACE/checkrunning.sh '
         sh ' echo RUNNING NEW INSTANCE FOR TESTING -------- '
         sh 'docker run -d -p 1000:80 --name ecomtest jorgescarenzi/ecom:$BUILD_NUMBER '
         sh 'chmod +x -R $WORKSPACE/test.sh'
